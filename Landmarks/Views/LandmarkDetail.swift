@@ -11,7 +11,7 @@ struct LandmarkDetail: View {
     var landmark: Landmark
     
     var body: some View {
-        VStack {
+        ScrollView {
             // Map
             MapView(coordinate: landmark.locationCoordinate).frame(height: 300)
             
@@ -41,15 +41,17 @@ struct LandmarkDetail: View {
                 Text(landmark.description)
             }
             .padding()
-            
-            // Spacer, push stuff to top
-            Spacer()
         }
+        .navigationTitle(landmark.name)
+        .navigationBarTitleDisplayMode(.large)
     }
 }
 
 struct LandmarkDetail_Previews: PreviewProvider {
     static var previews: some View {
-        LandmarkDetail(landmark: landmarks[0])
+        ForEach(["iPhone SE (2nd generation)", "iPhone XS Max"], id: \.self) { deviceName in
+            LandmarksList()
+                .previewDevice(PreviewDevice(rawValue: deviceName))
+        }
     }
 }
