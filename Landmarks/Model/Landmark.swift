@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-import MapKit
+import CoreLocation
 
 struct Landmark: Hashable, Codable {
     // ===================================================
@@ -30,11 +30,11 @@ struct Landmark: Hashable, Codable {
     // ===================================================
     // Map coordinates
     // ===================================================
-    private var coodinates: Coordinates
+    private var coordinates: Coordinates
     var locationCoordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(
-            latitude: coodinates.latitude,
-            longitude: coodinates.longitude
+            latitude: coordinates.latitude,
+            longitude: coordinates.longitude
         )
     }
 
