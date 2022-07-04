@@ -43,7 +43,7 @@ struct LandmarkDetail: View {
             .padding()
         }
         .navigationTitle(landmark.name)
-        .navigationBarTitleDisplayMode(.large)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
@@ -52,6 +52,7 @@ struct LandmarkDetail_Previews: PreviewProvider {
         ForEach(["iPhone SE (2nd generation)", "iPhone XS Max"], id: \.self) { deviceName in
             LandmarksList()
                 .previewDevice(PreviewDevice(rawValue: deviceName))
+                .previewDisplayName(deviceName)
         }
     }
 }
