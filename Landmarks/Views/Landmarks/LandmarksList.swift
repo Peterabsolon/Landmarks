@@ -8,15 +8,28 @@
 import SwiftUI
 
 struct LandmarksList: View {
+  // ====================================================
+  // Global state
+  // ====================================================
   @EnvironmentObject var modelData: ModelData
+
+  // ====================================================
+  // State
+  // ====================================================
   @State private var showFavoritesOnly = false
 
-  var filteredLandmarks: [Landmark] {
+  // ====================================================
+  // Computed
+  // ====================================================
+  var landmarks: [Landmark] {
     modelData.landmarks.filter { landmark in
       !showFavoritesOnly || landmark.isFavorite
     }
   }
 
+  // ====================================================
+  // View
+  // ====================================================
   var body: some View {
     NavigationView {
       List {
@@ -24,7 +37,7 @@ struct LandmarksList: View {
           Text("Favorites only")
         }
 
-        ForEach(filteredLandmarks) { landmark in
+        ForEach(landmarks) { landmark in
           NavigationLink {
             LandmarkDetail(landmark: landmark)
           } label: {

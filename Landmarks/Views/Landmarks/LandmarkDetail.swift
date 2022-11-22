@@ -8,13 +8,26 @@
 import SwiftUI
 
 struct LandmarkDetail: View {
+  // ====================================================
+  // Global state
+  // ====================================================
   @EnvironmentObject var modelData: ModelData
-  var landmark: Landmark
 
+  // ====================================================
+  // Props
+  // ====================================================
+  @State var landmark: Landmark
+
+  // ====================================================
+  // Computed
+  // ====================================================
   var landmarkIndex: Int {
     modelData.landmarks.firstIndex(where: { $0.id == landmark.id })!
   }
 
+  // ====================================================
+  // View
+  // ====================================================
   var body: some View {
     ScrollView {
       // Map
@@ -31,7 +44,7 @@ struct LandmarkDetail: View {
           Text(landmark.name)
             .font(.title)
 
-          FavoriteButton(isSet: $modelData.landmarks[landmarkIndex].isFavorite)
+          FavoriteButton(isSet: $landmark.isFavorite)
         }
 
         HStack {
